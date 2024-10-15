@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "725499738773",
+    "project_id": "deshi-app-85ebe",
+    "storage_bucket": "deshi-app-85ebe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:725499738773:android:d88f485f241e90e750799c",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhXuhodoOiumiQfG5T_QPCwHtfItPeAZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
