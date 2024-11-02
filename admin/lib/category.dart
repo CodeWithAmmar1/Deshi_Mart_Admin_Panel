@@ -271,4 +271,3 @@ class _CategoryItemState extends State<CategoryItem> {
   }
 }
 // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7ygpXgsobRRzuWjpigN8TnVYXE7EUSYGUw&s
-// https://rukminim2.flixcart.com/image/850/1000/kerfl3k0/plant-seed/7/b/v/50-a1-360-plantzon-original-imafvd76uqnhkckj.jpeg?q=90&crop=false

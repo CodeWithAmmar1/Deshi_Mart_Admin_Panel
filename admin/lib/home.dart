@@ -53,71 +53,88 @@ class _HomeState extends State<Home> {
                 itemCount: data.length,
                 itemBuilder: (BuildContext context, int index) {
                   var order = data[index];
-                  return Container(
-                    margin: EdgeInsets.all(10),
-                    height: 100,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      color: Colors.green.shade200,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(25),
+
+                  return IntrinsicHeight(
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      width: 400,
+                      decoration: BoxDecoration(
+                        color: Colors.green.shade200,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(25),
+                        ),
+                        border: Border.all(color: Colors.green, width: 2),
                       ),
-                      border: Border.all(color: Colors.green, width: 2),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Product: ${order['product']}",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                              Text(
-                                "Quantity: ${order['quantity']}",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                              Text(
-                                "Total: \$${(order['total'] as num).toStringAsFixed(2)}",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                            ],
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            width: 10,
                           ),
-                        ),
-                        IconButton(
-                          onPressed: () async {
-                            try {
-                              await firestore
-                                  .collection("order")
-                                  .doc(order
-                                      .id) // Ensures we are passing the document ID as a String
-                                  .delete();
-                            } catch (e) {
-                              print("Error deleting document: $e");
-                            }
-                          },
-                          icon: Icon(
-                            Icons.delete,
-                            color: Colors.black,
-                            size: 30,
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    children: List.generate(
+                                      order['product'].length,
+                                      (index) {
+                                        return Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Product: ${order['product'][index]}",
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white),
+                                            ),
+                                            Text(
+                                              "Quantity: ${order['quantity'][index]}",
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  "Total: \$${(order['total'] as num).toStringAsFixed(2)}",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                          IconButton(
+                            onPressed: () async {
+                              try {
+                                await firestore
+                                    .collection("order")
+                                    .doc(order
+                                        .id) // Ensures we are passing the document ID as a String
+                                    .delete();
+                              } catch (e) {
+                                print("Error deleting document: $e");
+                              }
+                            },
+                            icon: Icon(
+                              Icons.delete,
+                              color: Colors.black,
+                              size: 30,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
